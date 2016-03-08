@@ -1,6 +1,7 @@
 function Cell(args) {
   this.alive = false;
-  this.coords = [args.x, args.y];
+  this.x = args.x;
+  this.y = args.y;
   this.neighbours = args.neighbours;
 }
 
@@ -12,6 +13,10 @@ Cell.prototype.numberOfNeighboursAlive = function() {
     }
   }
   return result;
+};
+
+Cell.prototype.birth = function() {
+  this.alive = true;
 };
 
 module.exports = Cell;

@@ -24,12 +24,27 @@ Grid.prototype.refreshGrid = function() {
   var emptyGrid = this.generateGrid();
   for(var i = 0; i < this.cellList.length; i++) {
     var cell = this.cellList[i];
-    var y = cell.coords[1];
-    var x = cell.coords[0];
+    var y = cell.y;
+    var x = cell.x;
     emptyGrid[y][x] = cell.alive;
   }
   return emptyGrid
 }
+
+Grid.prototype.giveLive = function(x, y) {
+  var cell = this.findCell(x, y);
+  cell.birth();
+};
+
+Grid.prototype.findCell = function(x, y) {
+  var result;
+  this.cellList.forEach(function(cell) {
+    if ((cell.x === x) && (cell.y === y)) {
+      result = cell;
+    } 
+  });
+  return result;
+};
 
 Grid.prototype.generateCellList = function() {
   var cellList = [];
