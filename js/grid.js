@@ -69,9 +69,23 @@ Grid.prototype.generateCellList = function() {
     }
   }
   this.cellList = cellList;
+  this.findAllNeighbours();
 }
 
+Grid.prototype.findAllNeighbours = function() {
+  for(var i=0; i<this.cellList.length; i++) {
+    this.findNeighbours(this.cellList[i]);
+  }
+};
+
 Grid.prototype.generateCell = function(x,y) {
+  return new this.cellGenerator({"x":x,"y":y})
+}
+
+Grid.prototype.findNeighbours = function(cell) {
+  var result = [];
+  var x = cell.x;
+  var y = cell.y;
   var n = [x-1, y];
   var ne = [x-1, y+1];
   var e = [x, y+1];
@@ -82,11 +96,14 @@ Grid.prototype.generateCell = function(x,y) {
   var nw = [x-1, y-1];
   var neighbours = [n, ne, e, se, s, sw, w, nw];
   neighbours = this.wrap(neighbours);
-  return new this.cellGenerator({"x":x,"y":y,"neighbours":neighbours})
-}
+  for(i=0; i<neighbours.length; i++) {
+    result.push(this.findCell(neighbours[i][0], neighbours[i][1]));
+  }
+  cell.neighbours = result;
+};
 
 Grid.prototype.wrap = function(neighbours) {
-  for(i=0; i<neighbours.length; i++) {
+  for(var i=0; i<neighbours.length; i++) {
     if (neighbours[i][0] < 0) {
       neighbours[i][0] = (this.width -1);   
     }
