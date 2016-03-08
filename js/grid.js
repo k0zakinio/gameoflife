@@ -1,7 +1,9 @@
+'use strict';
+
 function Grid(cellKlass, height, width) {
-  this.height = height || 5,
-  this.width = width || 5,
-  this.cellGenerator = cellKlass
+  this.height = height || 5;
+  this.width = width || 5;
+  this.cellGenerator = cellKlass;
 }
 
 Grid.prototype.generateRow = function() {
@@ -10,7 +12,7 @@ Grid.prototype.generateRow = function() {
     row.push('');
   } 
   return row;
-}
+};
 
 Grid.prototype.generateGrid = function() {
   var layout = [];
@@ -18,7 +20,7 @@ Grid.prototype.generateGrid = function() {
     layout.push(this.generateRow()); 
   }
   return layout;
-}
+};
 
 Grid.prototype.refreshGrid = function() {
   var emptyGrid = this.generateGrid();
@@ -28,8 +30,8 @@ Grid.prototype.refreshGrid = function() {
     var x = cell.x;
     emptyGrid[y][x] = cell.alive;
   }
-  return emptyGrid
-}
+  return emptyGrid;
+};
 
 Grid.prototype.nextGeneration = function() {
   this.cellList.forEach(function(cell) {
@@ -39,7 +41,7 @@ Grid.prototype.nextGeneration = function() {
     cell.updateCell();
   });
   return this.refreshGrid();
-}
+};
 
 Grid.prototype.giveLife = function(x, y) {
   var cell = this.findCell(x, y);
@@ -49,7 +51,7 @@ Grid.prototype.giveLife = function(x, y) {
 Grid.prototype.kill = function(x, y) {
   var cell = this.findCell(x, y);
   cell.kill();
-}
+};
 
 Grid.prototype.findCell = function(x, y) {
   var result;
@@ -70,7 +72,7 @@ Grid.prototype.generateCellList = function() {
   }
   this.cellList = cellList;
   this.findAllNeighbours();
-}
+};
 
 Grid.prototype.findAllNeighbours = function() {
   for(var i=0; i<this.cellList.length; i++) {
@@ -79,8 +81,8 @@ Grid.prototype.findAllNeighbours = function() {
 };
 
 Grid.prototype.generateCell = function(x,y) {
-  return new this.cellGenerator({"x":x,"y":y})
-}
+  return new this.cellGenerator({"x":x,"y":y});
+};
 
 Grid.prototype.findNeighbours = function(cell) {
   var result = [];
@@ -96,7 +98,7 @@ Grid.prototype.findNeighbours = function(cell) {
   var nw = [x-1, y-1];
   var neighbours = [n, ne, e, se, s, sw, w, nw];
   neighbours = this.wrap(neighbours);
-  for(i=0; i<neighbours.length; i++) {
+  for(var i=0; i<neighbours.length; i++) {
     result.push(this.findCell(neighbours[i][0], neighbours[i][1]));
   }
   cell.neighbours = result;

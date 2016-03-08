@@ -1,3 +1,5 @@
+'use strict';
+
 function Cell(args) {
   this.alive = false;
   this.x = args.x;
@@ -7,10 +9,10 @@ function Cell(args) {
 }
 
 Cell.prototype.checkNeighbours = function() {
-  var result = 0
-  for(i=0; i<this.neighbours.length; i++) {
+  var result = 0;
+  for(var i=0; i<this.neighbours.length; i++) {
     if (this.neighbours[i].alive) {
-      result++
+      result++;
     }
   }
   this.neighboursAlive = result;
@@ -18,7 +20,7 @@ Cell.prototype.checkNeighbours = function() {
 
 Cell.prototype.kill = function() {
   this.alive = false;
-}
+};
 
 Cell.prototype.birth = function() {
   this.alive = true;
@@ -33,6 +35,6 @@ Cell.prototype.updateCell = function() {
   } else {
     this.kill();
   }
-}
+};
 
 module.exports = Cell;
