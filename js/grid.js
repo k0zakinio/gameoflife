@@ -7,7 +7,7 @@ function Grid(cellKlass, height, width) {
 Grid.prototype.generateRow = function() {
   var row = [];
   for(var i=0; i < this.width; i++) {
-  row.push('o');
+    row.push('');
   } 
   return row;
 }
@@ -15,17 +15,20 @@ Grid.prototype.generateRow = function() {
 Grid.prototype.generateGrid = function() {
   var layout = [];
   for(var i=0; i < this.height; i++) {
-  layout.push(this.generateRow()); 
+    layout.push(this.generateRow()); 
   }
   return layout;
 }
 
-Grid.prototype.findCells = function(coordsArray) {
-  var result = [];
-  for(var i=0; i < coordsArray.length; i++) {
-    var cell = coordsArray[i];
-    
-  }  
+Grid.prototype.refreshGrid = function() {
+  var emptyGrid = this.generateGrid();
+  for(var i = 0; i < this.cellList.length; i++) {
+    var cell = this.cellList[i];
+    var y = cell.coords[1];
+    var x = cell.coords[0];
+    emptyGrid[y][x] = cell.alive;
+  }
+  return emptyGrid
 }
 
 Grid.prototype.generateCellList = function() {
@@ -35,7 +38,7 @@ Grid.prototype.generateCellList = function() {
       cellList.push(this.generateCell(x,y));
     }
   }
-  return cellList
+  this.cellList = cellList;
 }
 
 Grid.prototype.generateCell = function(x,y) {
