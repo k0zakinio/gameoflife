@@ -20,7 +20,6 @@ Grid.prototype.generateGrid = function() {
   return layout;
 }
 
-
 Grid.prototype.findCells = function(coordsArray) {
   var result = [];
   for(var i=0; i < coordsArray.length; i++) {
@@ -39,7 +38,6 @@ Grid.prototype.generateCellList = function() {
   return cellList
 }
 
-
 Grid.prototype.generateCell = function(x,y) {
   var n = [x-1, y];
   var ne = [x-1, y+1];
@@ -50,8 +48,26 @@ Grid.prototype.generateCell = function(x,y) {
   var w = [x, y-1];
   var nw = [x-1, y-1];
   var neighbours = [n, ne, e, se, s, sw, w, nw];
+  neighbours = this.wrap(neighbours);
   return new this.cellGenerator({"x":x,"y":y,"neighbours":neighbours})
 }
 
+Grid.prototype.wrap = function(neighbours) {
+  for(i=0; i<neighbours.length; i++) {
+    if (neighbours[i][0] < 0) {
+      neighbours[i][0] = (this.width -1);   
+    }
+    if (neighbours[i][0] > (this.width -1)) {
+      neighbours[i][0] = 0;
+    }
+    if (neighbours[i][1] < 0) {
+      neighbours[i][1] = (this.height -1);
+    }
+    if (neighbours[i][1] > (this.height -1)) {
+      neighbours[i][1] = 0;
+    }
+  }
+  return neighbours;
+};
 
 module.exports = Grid;
