@@ -4,10 +4,6 @@ function Cell(args) {
   this.neighbours = args.neighbours;
 }
 
-
-[{alive: false, coords: x, y}, {}. {}]
-
-
 Cell.prototype.numberOfNeighboursAlive = function() {
   var result = 0
   for(i=0; i<this.neighbours.length; i++) {
@@ -17,10 +13,5 @@ Cell.prototype.numberOfNeighboursAlive = function() {
   }
   return result;
 };
-
-Cell.update
-  if numberOfNeighalive > 3
-    this.alive = true
-}
 
 module.exports = Cell;
