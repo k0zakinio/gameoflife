@@ -31,10 +31,25 @@ Grid.prototype.refreshGrid = function() {
   return emptyGrid
 }
 
-Grid.prototype.giveLive = function(x, y) {
+Grid.prototype.nextGeneration = function() {
+  this.cellList.forEach(function(cell) {
+    cell.checkNeighbours();
+  });
+  this.cellList.forEach(function(cell) {
+    cell.updateCell();
+  });
+  return this.refreshGrid();
+}
+
+Grid.prototype.giveLife = function(x, y) {
   var cell = this.findCell(x, y);
   cell.birth();
 };
+
+Grid.prototype.kill = function(x, y) {
+  var cell = this.findCell(x, y);
+  cell.kill();
+}
 
 Grid.prototype.findCell = function(x, y) {
   var result;
