@@ -6,6 +6,7 @@ function Cell(args) {
   this.y = args.y;
   this.neighbours = args.neighbours;
   this.neighboursAlive = 0;
+  this.expiredLife = false;
 }
 
 Cell.prototype.checkNeighbours = function() {
@@ -20,6 +21,7 @@ Cell.prototype.checkNeighbours = function() {
 
 Cell.prototype.kill = function() {
   this.alive = false;
+  this.expiredLife = false;
 };
 
 Cell.prototype.birth = function() {
@@ -28,13 +30,11 @@ Cell.prototype.birth = function() {
 
 Cell.prototype.updateCell = function() {
   var alive = this.neighboursAlive;
-  if(alive < 2) {
+  if(alive < 2 || alive > 3) {
     this.kill();
-  } else if (alive === 3) {
+  } else if(alive === 3) {
     this.birth();
-  } else {
-    this.kill();
   }
-};
+}
 
-module.exports = Cell;
+//module.exports = Cell;

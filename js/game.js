@@ -1,4 +1,4 @@
-function Game(gridKlass) {
+Function Game(gridKlass) {
   this.grid = new gridKlass(5, 5);
 }
 

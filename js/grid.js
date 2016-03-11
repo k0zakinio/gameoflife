@@ -122,4 +122,13 @@ Grid.prototype.wrap = function(neighbours) {
   return neighbours;
 };
 
-module.exports = Grid;
+Grid.prototype.giveLifeToRandomCells = function() {
+  var amount = Math.floor((this.height * this.width) / 2);
+  for(var i = 0; i < amount; i++) {
+    var randx = Math.floor(Math.random() * (this.width));
+    var randy = Math.floor(Math.random() * (this.height));
+    this.giveLife(randx, randy);
+  }
+}
+
+//module.exports = Grid;

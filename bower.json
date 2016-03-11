@@ -1,0 +1,18 @@
+{
+  "name": "gameoflife",
+  "homepage": "https://github.com/k0zakinio/gameoflife",
+  "authors": [
+    "Andrew Dowell <adowellphoto@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
