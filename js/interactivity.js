@@ -1,13 +1,26 @@
 $(document).ready(function() {
   var grid = new Grid(Cell, 70, 40);
+  var interval; 
+
   $('#generate').click(function() {
     grid.giveLifeToRandomCells(10);
     updateView();
   });
 
   $('#nextgen').click(function() {
-    grid.nextGeneration();
-    updateView();
+    interval = setInterval(function() {
+      grid.nextGeneration();
+      updateView();
+    });
+    $('#nextgen').hide(100, function() {
+      $('#stop').show(100);
+    });
+  })
+
+  $('#stop').click(function() {
+    clearInterval(interval);
+    $('#stop').hide(100);
+    $('#nextgen').show(100);
   })
 
   var updateView = function() {

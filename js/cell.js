@@ -6,7 +6,6 @@ function Cell(args) {
   this.y = args.y;
   this.neighbours = args.neighbours;
   this.neighboursAlive = 0;
-  this.expiredLife = false;
 }
 
 Cell.prototype.checkNeighbours = function() {
