@@ -34,3 +34,10 @@ Simply
 * click the 'Start the game of life' button to commence the game of life
 
 * click 'Pause the game of life' to stop the game progressing
+
+
+###### Screenshots
+
+![Game of life - empty grid](http://i.imgur.com/1wB9lUX.png)
+![Game of life in action](http://i.imgur.com/pJwwp98.png)
+
