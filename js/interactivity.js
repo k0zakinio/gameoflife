@@ -40,6 +40,7 @@ $(document).ready(function() {
       }
       $('#grid').append(rowHtml);
     }
+    $('#generations').text(grid.generations);
   }
 
   grid.generateCellList();

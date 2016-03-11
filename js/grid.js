@@ -4,6 +4,7 @@ function Grid(cellKlass, height, width) {
   this.height = height || 5;
   this.width = width || 5;
   this.cellGenerator = cellKlass;
+  this.generations = 0;
 }
 
 Grid.prototype.generateRow = function() {
@@ -34,6 +35,7 @@ Grid.prototype.refreshGrid = function() {
 };
 
 Grid.prototype.nextGeneration = function() {
+  this.generations++;
   this.cellList.forEach(function(cell) {
     cell.checkNeighbours();
   });
