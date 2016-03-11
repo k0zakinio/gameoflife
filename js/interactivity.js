@@ -11,7 +11,7 @@ $(document).ready(function() {
     interval = setInterval(function() {
       grid.nextGeneration();
       updateView();
-    });
+    }, 50);
     $('#nextgen').hide(100, function() {
       $('#stop').show(100);
     });
@@ -26,7 +26,6 @@ $(document).ready(function() {
   var updateView = function() {
     $('#grid').html('');
     var view = grid.refreshGrid(); 
-    console.log(view);
     for( var i = 0; i < view.length; i++) {
       var row = view[i];
       var rowHtml = "<div class='row'>";
