@@ -38,6 +38,7 @@ $(document).ready(function() {
 	}
 	rowHtml += ("<div " + css + "></div>");
       }
+      rowHtml += "</div>"; // close row div
       $('#grid').append(rowHtml);
     }
     $('#generations').text(grid.generations);
