@@ -1,6 +1,6 @@
 'use strict';
 
-function Grid(cellKlass, height, width) {
+var Grid = function(cellKlass, height, width) {
   this.height = height || 5;
   this.width = width || 5;
   this.cellGenerator = cellKlass;

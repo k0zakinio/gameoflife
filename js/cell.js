@@ -1,6 +1,6 @@
 'use strict';
 
-function Cell(args) {
+var Cell = function(args) {
   this.alive = false;
   this.x = args.x;
   this.y = args.y;
